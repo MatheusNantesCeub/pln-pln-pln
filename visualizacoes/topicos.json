@@ -1,0 +1,253 @@
+{
+  "collection": "artigos_ia",
+  "chunks": 8808,
+  "k": 5,
+  "silhueta": {},
+  "topicos": [
+    {
+      "cluster_id": 0,
+      "nome": "Tabelas de Resultados",
+      "nome_llm": "Resultados e Tabelas",
+      "descricao": "Contém dados numéricos e tabelas de resultados de experimentos.",
+      "chunks": 2230,
+      "pdfs": 97,
+      "termos": [
+        "table",
+        "gpt-",
+        "mean",
+        "claude",
+        "flash",
+        "base",
+        "accuracy",
+        "sft",
+        "llama-",
+        "sol",
+        "gpt- sol",
+        "results"
+      ],
+      "artigos_principais": [
+        {
+          "titulo": "MJev-Spatial: System One Spatial Intelligence via Native Attention Matching",
+          "chunks": 79
+        },
+        {
+          "titulo": "EMO: A Closed-Loop Test-Time Computation Framework via Alternating Context Optimization and Logits Steering",
+          "chunks": 63
+        },
+        {
+          "titulo": "Terminal-RSI: Recursive Self-Improving Terminal Agents via Recursive Self-Rewrite and Policy-Refine",
+          "chunks": 61
+        },
+        {
+          "titulo": "BitSparse: Compact Activation Storage for ReLU Feed-Forward Networks",
+          "chunks": 50
+        },
+        {
+          "titulo": "3DCodeVerse: Exploring 3D Worlds as Code",
+          "chunks": 50
+        }
+      ],
+      "trechos_centrais": [
+        "ated on 25 reachable target decisions. Best values are bold. Latent dim. ADE↓FDE↓PSNR↑SSIM↑LPIPS↓Success↑ 88.92 19.26 31.293 0.9474 0.0646 44% 167.63 15.90 29.557 0.9470 0.0614 64% 32(ours)3.85 7.59 31.976 0.9513 0.0495 72% 646.86 13.98 31.692 0.9504 0.0551 64% 1287.08 14.51 31.372 0.9483 0.0581 64% E.3 LATENT-SPACEPCAACROSS TASKS Figure 9 shows the latent-space analysis for four simulation and fo…",
+        "Table 6.Training efficiency on the historical 72K corpus: eight GPUs, global batch 256, microbatch 8, four accumula- tion steps. Each condition runs 100 updates; the last 92 updates contain the same 23,552 measured QA. Tail includes communication and waiting. No quality evaluation was performed. Layout QA/s Padding (%) Step CV (%) Tail (ms) Original order 99.06 35.17 2.17 39.5 Local length 116.91 …",
+        "Preprint Table 16: TSExam accuracy across the 746 questions, by category. Gray rows denote reference models. Bold values mark the best result per column, excluding reference models. Model Overall Anomaly Causality Noise Pattern Similarity GPT-4o (T) 0.586 0.491 0.458 0.667 0.594 0.667 GPT-4o (V) 0.736 0.583 0.611 0.786 0.787 0.758 GPT-5 (T) 0.724 0.704 0.556 0.679 0.782 0.700 GPT-5 (V) 0.784 0.648…"
+      ]
+    },
+    {
+      "cluster_id": 1,
+      "nome": "Agentes e Aprendizado por Reforço",
+      "nome_llm": "Aprendizado por Reforço",
+      "descricao": "Contém trechos focados em algoritmos e técnicas de aprendizado por reforço em agentes de IA.",
+      "chunks": 1871,
+      "pdfs": 94,
+      "termos": [
+        "policy",
+        "agent",
+        "learning",
+        "agents",
+        "work",
+        "agentic",
+        "tasks",
+        "reinforcement learning",
+        "reinforcement",
+        "training",
+        "llms",
+        "task"
+      ],
+      "artigos_principais": [
+        {
+          "titulo": "OS-Helix: Unifying GUI Interaction and Code Execution in Native Computer-Using Agents",
+          "chunks": 70
+        },
+        {
+          "titulo": "Improving Environment-Agnostic Coding Agents: The Role of Scaffolding",
+          "chunks": 55
+        },
+        {
+          "titulo": "Mosaic: Multi-Session Agentic Reinforcement Learning",
+          "chunks": 50
+        },
+        {
+          "titulo": "Training Reasoning Models to Generate Diverse Scientific Ideas",
+          "chunks": 49
+        },
+        {
+          "titulo": "Mem4Act: Learning Effective Latent Memory for Long-Horizon Robotic Manipulation",
+          "chunks": 48
+        }
+      ],
+      "trechos_centrais": [
+        "and revision for constrained long-form generation ( W an et al. ,2025 ). CoAct uses online task allocation to parallelize LLM-agent execution ( Peng et al. ,2026 ). Context-CoT synthesizes and filters reasoning traces grounded in supplied context for fine-tuning ( Jin et al. ,2026 ), while AdaThink V learns when explicit reasoning improves video answers enough to justify its additional response le…",
+        "Li et al., 2026; Chen et al., 2025a). Likelihood-based, hierarchical, and latent-space formulations support optimization of generative policies (Ren et al., 2025; Lei et al., 2026; Wagenmaker et al., 2025; Li et al., 2025; Chen et al., 2025a), while world models reduce physical interaction by pro- viding imagined or synthetic experience (Yang et al., 2026; Zhu et al., 2026; GigaBrain Team et al., …",
+        "w/ RL 50.1 53.7 47.9 26.6 51.9 63.2 52.1 49.36 +6.66 0.93 6.2 4 Experiments In this section, we conduct experiments to study three research questions.RQ1:Can a steering agent improve task per- formance, and can reinforcement learning strengthen its steering intelligence?RQ2:Does the learned steering capa- bility generalize to out-of-domain tasks, transfer to unseen executors, and support controlla…"
+      ]
+    },
+    {
+      "cluster_id": 2,
+      "nome": "Visão Computacional 3D",
+      "nome_llm": "Visão 3D",
+      "descricao": "Contém trechos relacionados à geração e modelagem de objetos em 3D.",
+      "chunks": 1727,
+      "pdfs": 68,
+      "termos": [
+        "camera",
+        "frame",
+        "geometry",
+        "image",
+        "frames",
+        "scene",
+        "video",
+        "cameras",
+        "depth",
+        "images",
+        "views",
+        "rgb"
+      ],
+      "artigos_principais": [
+        {
+          "titulo": "SUPRA-TEX: 3D Generation with Super-Aligned Texture",
+          "chunks": 108
+        },
+        {
+          "titulo": "GeoState: Learning View-Decoupled Geometry States for 3D World Modeling",
+          "chunks": 90
+        },
+        {
+          "titulo": "CF-Splat: Closed-Form Triangle Splatting with Mesh Priors",
+          "chunks": 86
+        },
+        {
+          "titulo": "3DCodeVerse: Exploring 3D Worlds as Code",
+          "chunks": 82
+        },
+        {
+          "titulo": "Perceive, Predict, and Plan: a Unified World Action Model for Egocentric Dexterous Manipulation",
+          "chunks": 77
+        }
+      ],
+      "trechos_centrais": [
+        "by the observation that global layout forms in early denoising steps while fine- grained details emerge later [37]. The weighting coefficientλis fixed at 0.55 in all experiments. All experiments are conducted on an NVIDIA A6000 GPU. Benchmarks.Consistory+ [17] spans subjects across diverse categories (e.g., humans, animals, nature). To evaluate generation performance under more com- plex spatial c…",
+        "branch accounts for 10%,25%, and 15% of clips, respectively; the other 50% use independently sampled modes across time. These are sampling probabilities, so matching total updates does not match the exposure to any one complete mode. Action supervision uses available annotations in every mode, while video flow matching supervises unobserved RGB positions. The shared trans- former weights receive g…",
+        "kernel retains the pretrained model’s native attention and positional encoding, while a separate geometric kernel uses estimated 3D points and camera poses to directly modulate attention through point displacements and relative view transformations. Then, a learned gate fuses their outputs. Geometry thus enters attention as position rather than as fused reconstruction features. We further introduc…"
+      ]
+    },
+    {
+      "cluster_id": 3,
+      "nome": "Perguntas, Prompts e Avaliação",
+      "nome_llm": "Prompt e Avaliação",
+      "descricao": "Inclui prompts de avaliação e métodos de teste para modelos de linguagem.",
+      "chunks": 1660,
+      "pdfs": 74,
+      "termos": [
+        "sql",
+        "answer",
+        "evidence",
+        "question",
+        "label",
+        "json",
+        "conversation",
+        "patient",
+        "clinical",
+        "schema",
+        "prompt",
+        "emotion"
+      ],
+      "artigos_principais": [
+        {
+          "titulo": "MindEval2: Clinically Grounded Patients and Rubrics for Evaluating Language Models in Mental Health Support",
+          "chunks": 140
+        },
+        {
+          "titulo": "CLUE: Uncovering Social Context for Pragmatic Understanding",
+          "chunks": 123
+        },
+        {
+          "titulo": "PremiseSQL: Evaluating Premise Critique and Abstention in Text-to-SQL Systems",
+          "chunks": 110
+        },
+        {
+          "titulo": "Training Reasoning Models to Generate Diverse Scientific Ideas",
+          "chunks": 98
+        },
+        {
+          "titulo": "AI Consilium: a Benchmark of LLM Clinical Multidisciplinary Second Opinions",
+          "chunks": 97
+        }
+      ],
+      "trechos_centrais": [
+        "the goal explicitly requests a new output. - Diversity: avoid recent task patterns and filename-only variants recorded in application memory. - If multiple applications are genuinely required, ‘dependency_chain‘ must state a verifiable source-to-operation-to-target dependency; do not reward unrelated parallel actions merely for involving more applications. # Scoring and Selection Use integer score…",
+        "Evaluate all four mechanisms exactly once.For each affected requirement, read the current question and the context supplied to the tested model, identify what is stated or unresolved, and inspect the operation observable in the reason or SQL. Apply the positive tests and boundaries in Table 16. Do not create a label merely because the response is unsatisfactory. Apply the same rule whether SQL is …",
+        "proposals the meta agent read but did not take. Each entry is keyed by round, so a later round can read what an earlier one expected as well as what it got. Registering the hypothesis first is what makes it worth recording. A round states the data change it plans, why that change should move the metric, the round its result will be compared against, the direction it expects, and the finer observat…"
+      ]
+    },
+    {
+      "cluster_id": 4,
+      "nome": "Provas e Teoremas",
+      "nome_llm": "Prova e Teorema",
+      "descricao": "Contém provas matemáticas e enunciados de teoremas relacionados a aprendizado de máquina e otimização.",
+      "chunks": 1320,
+      "pdfs": 88,
+      "termos": [
+        "probability",
+        "lemma",
+        "inequality",
+        "equation",
+        "define",
+        "proof",
+        "theorem",
+        "bound",
+        "max",
+        "term",
+        "xbt",
+        "proposition"
+      ],
+      "artigos_principais": [
+        {
+          "titulo": "Learning Rational Strategies for Temporal Objectives in Multi-Agent Systems",
+          "chunks": 70
+        },
+        {
+          "titulo": "Explore Once, Evaluate Many: Multiple Policy Evaluation for Stochastic Linear Bandits",
+          "chunks": 57
+        },
+        {
+          "titulo": "Query-Efficient Rejection Sampling for Parallel Masked Diffusion",
+          "chunks": 54
+        },
+        {
+          "titulo": "Generalization Guarantees of Randomized Block Coordinate Descent for Nonconvex Learning",
+          "chunks": 50
+        },
+        {
+          "titulo": "Baselines and Score Centering in Policy Gradient Estimation",
+          "chunks": 46
+        }
+      ],
+      "trechos_centrais": [
+        "that fixes the initial latent, the anchor layers, and every non-routing source of randomness. Only their routing seeds differ: ξ1 content =ξ2 content , ξ1 route̸=ξ2 route.(6) Because the sampler is deterministic, the two members diverge only through their routes. For member i∈ {1,2} , let ̄idenote the other member of the pair. The partner reward then serves as a leave-one-out baseline: Apair i,d=r…",
+        "19:ifb t= 1then 20:Drawy sfrom the strong model givenH t 21:yt←y s 22:else 23:yt←y w,it 24:end if 25:Executeytand observeot 26:H t+1←(H t, yt, ot);t←t+ 1 27:end while 28:end for 29:end for 30:returnD B Proof of Theorem 3.1 We first give a more detailed statement of the result, including the optimal sampling policy. The proof has a simple structure. For a fixed number of weak samples, we condition …",
+        "where Tk:=1 M ̃φ⊤ kB−1MX i=1ηiφ(X i, Ai). The sample budgets and Lemmas 2, 3 and 6 give failure probability at mostζfor each final event, conditional on the data used to select the stage. For the covariance event, we apply the concentration argument to the single fixed mixture after conditioning on planning. Define E:= J\\ j=0Eplan,j ∩ Emean∩ Ecov∩ Enoise. A union bound, together with the condition…"
+      ]
+    }
+  ]
+}

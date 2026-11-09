@@ -629,7 +629,7 @@ def upload_document():
         # Processar documento
         emit_progress('processing', 50, 'Processando documento...')
         try:
-            result = document_processor.process_document(file_path)
+            result = document_processor.process_document(file_path, enhance=config.ENHANCE_WITH_LLM)
             emit_progress('processed', 70, 'Documento processado com sucesso')
         except Exception as e:
             os.remove(file_path)

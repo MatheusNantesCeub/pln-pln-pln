@@ -3182,6 +3182,20 @@ DOCUMENTO:
                                 Similaridade mínima: <span class="font-medium text-blue-600">${(similarityThreshold * 100).toFixed(0)}%</span>
                             </div>
                         </div>
+                `;
+
+                // Resposta gerada pelo LLM a partir dos chunks abaixo
+                if (content) {
+                    resultsContent += `
+                        <div class="mb-6 p-4 rounded-lg border border-blue-200 bg-blue-50">
+                            <div class="font-semibold text-blue-900 mb-2">🤖 Resposta do LLM</div>
+                            <div class="markdown-content text-gray-900">${marked.parse(content)}</div>
+                        </div>
+                        <h4 class="text-md font-semibold text-gray-900 mb-2">📚 Trechos usados como contexto</h4>
+                    `;
+                }
+
+                resultsContent += `
                         <div class="text-sm text-gray-600 mb-4">
                             <p>🔍 <strong>Similaridade baseada em cálculo de cosseno</strong> entre o vetor da consulta e os vetores dos chunks de documentos.</p>
                         </div>
@@ -3201,7 +3215,8 @@ DOCUMENTO:
                         const similarityPercent = (source.similarity_percentage || source.score * 100).toFixed(1);
                         const fileName = source.file_name || 'Documento desconhecido';
                         const content = source.content || 'Conteúdo não disponível';
-                        const collectionName = source.source_collection || 'Collection desconhecida';
+                        const collectionName = source.source_collection || document.getElementById('chat-collection-select').value || 'Collection desconhecida';
+                        const title = source.titulo ? `<div class="text-xs text-gray-500">${source.titulo}</div>` : '';
                         const chunkNumber = source.chunk_number || (index + 1);
                         
                         resultsContent += `
@@ -3221,7 +3236,8 @@ DOCUMENTO:
                                         <span class="text-gray-500">similaridade</span>
                                     </div>
                                 </div>
-                                <div class="text-sm text-gray-700 bg-gray-50 p-3 rounded border-l-4 border-blue-500">
+                                ${title}
+                                <div class="text-sm text-gray-700 bg-gray-50 p-3 rounded border-l-4 border-blue-500 mt-2">
                                     <div class="font-medium mb-1">Chunk encontrado:</div>
                                     <div class="text-gray-600">${content.substring(0, 300)}${content.length > 300 ? '...' : ''}</div>
                                 </div>

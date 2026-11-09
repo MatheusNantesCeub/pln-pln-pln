@@ -1,0 +1,17 @@
+{
+  "limit": 2000,
+  "filter": {
+    "must": [
+      {
+        "key": "amostra_viz",
+        "match": {
+          "value": true
+        }
+      }
+    ]
+  },
+  "color_by": {
+    "payload": "topico"
+  },
+  "algorithm": "TSNE"
+}

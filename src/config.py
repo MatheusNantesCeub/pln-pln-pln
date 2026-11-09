@@ -32,10 +32,21 @@ class Config:
     N8N_PASSWORD = os.getenv("N8N_PASSWORD", "admin123")
     N8N_REQUEST_TIMEOUT = int(os.getenv("N8N_REQUEST_TIMEOUT", "120"))
     
-    # OpenAI
+    # Usar o webhook do n8n no chat (false = processamento local direto)
+    USE_N8N = os.getenv("USE_N8N", "true").lower() == "true"
+
+    # OpenAI (ou qualquer API compatível, ex.: Ollama via OPENAI_BASE_URL)
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
-    
+
+    # Reformatar o texto com LLM no upload (caro para documentos longos)
+    ENHANCE_WITH_LLM = os.getenv("ENHANCE_WITH_LLM", "true").lower() == "true"
+
+    # Ollama (modelos locais, sem chave de API)
+    OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+    LOCAL_EMBEDDING_MODEL = os.getenv("LOCAL_EMBEDDING_MODEL", "bge-m3")
+    LOCAL_EMBEDDING_DIMENSION = int(os.getenv("LOCAL_EMBEDDING_DIMENSION", "1024"))
+
     # Google Gemini
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
     GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
@@ -55,6 +66,13 @@ class Config:
             "dimension": 3072,
             "provider": "gemini",
             "api_key_env": "GEMINI_API_KEY"
+        },
+        "local": {
+            "name": "Ollama Local Embedding",
+            "model": LOCAL_EMBEDDING_MODEL,
+            "dimension": LOCAL_EMBEDDING_DIMENSION,
+            "provider": "ollama",
+            "api_key_env": None
         }
     }
     

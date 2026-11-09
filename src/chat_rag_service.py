@@ -79,7 +79,7 @@ class RAGChatService:
         self.vector_store = QdrantVectorStore()
         self.multi_agent_service = MultiAgentChatService()
         self.use_qdrant = True
-        self.use_n8n = True  # Flag para habilitar/desabilitar N8N
+        self.use_n8n = config.USE_N8N  # Flag para habilitar/desabilitar N8N
         self.sessions: Dict[str, ChatSession] = {}
     
     def create_session(self) -> str:
@@ -260,10 +260,11 @@ class RAGChatService:
             context = ""
             if relevant_docs:
                 context_parts = []
-                for doc in relevant_docs[:3]:
-                    source_collection = doc.get('source_collection', 'unknown')
-                    text = doc.get('text', '')
-                    context_parts.append(f"[Collection: {source_collection}]\n{text}")
+                for doc in relevant_docs[:5]:
+                    # search_similar devolve o trecho em 'content'
+                    text = doc.get('content') or doc.get('text', '')
+                    source = doc.get('titulo') or doc.get('file_name', 'desconhecido')
+                    context_parts.append(f"[Fonte: {source}]\n{text}")
                 context = "\n\n".join(context_parts)
             
             # Construir histórico de chat
@@ -277,7 +278,7 @@ class RAGChatService:
             # Prompt para o LLM
             prompt = f"""Você é um assistente educacional especializado em Processamento de Linguagem Natural.
 
-Contexto dos documentos:
+Contexto dos documentos (trechos podem estar em inglês):
 {context}
 
 Histórico da conversa:
@@ -285,17 +286,17 @@ Histórico da conversa:
 
 Pergunta do usuário: {query}
 
-Responda de forma clara e educativa, baseando-se no contexto fornecido. Se não houver informações relevantes no contexto, seja honesto sobre isso.
+Responda em português, de forma clara e educativa, usando apenas o contexto fornecido e citando entre colchetes o título do artigo de onde veio cada informação, como aparece em [Fonte: ...]. Se não houver informações relevantes no contexto, diga isso honestamente em vez de inventar.
 
 Resposta:"""
-            
-            # Usar OpenAI para gerar resposta
+
+            # Usar OpenAI (ou API compatível definida em OPENAI_BASE_URL, ex.: Ollama)
             from langchain_openai import ChatOpenAI
-            
+
             llm = ChatOpenAI(
                 api_key=config.OPENAI_API_KEY,
                 model=config.OPENAI_MODEL,
-                temperature=0.7
+                temperature=0.2
             )
             
             response = llm.invoke(prompt)

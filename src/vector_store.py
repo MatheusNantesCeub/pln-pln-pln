@@ -76,6 +76,16 @@ class EmbeddingManager:
                 google_api_key=config.GEMINI_API_KEY,
                 model=self.model_config["model"]
             )
+        elif self.provider == "ollama":
+            # Ollama expõe uma API compatível com a da OpenAI; o texto vai cru
+            # (sem tokenização tiktoken, que o Ollama não aceita)
+            from langchain_openai import OpenAIEmbeddings
+            return OpenAIEmbeddings(
+                api_key="ollama",
+                base_url=config.OLLAMA_BASE_URL,
+                model=self.model_config["model"],
+                check_embedding_ctx_length=False
+            )
         else:
             raise ValueError(f"Provider '{self.provider}' não suportado")
     
@@ -748,10 +758,11 @@ class QdrantVectorStore:
             # Gerar embedding para a query
             query_embedding = embedding_manager.get_embedding(query)
             
-            # Buscar documentos similares
-            search_result = self.client.search(
+            # Buscar documentos similares (query_points substitui client.search,
+            # removido nas versões recentes do qdrant-client)
+            search_result = self.client.query_points(
                 collection_name=collection_name,
-                query_vector=query_embedding,
+                query=query_embedding,
                 limit=top_k,
                 query_filter=Filter(
                     must_not=[
@@ -760,8 +771,9 @@ class QdrantVectorStore:
                             match=MatchValue(value=collection_name)
                         )
                     ]
-                )  # Excluir o ponto de metadata
-            )
+                ),  # Excluir o ponto de metadata
+                with_payload=True
+            ).points
             
             # Formatar resultados ZERO-CHARSET: recuperar conteúdo do MinIO
             results = []
@@ -791,6 +803,8 @@ class QdrantVectorStore:
                         "minio_path": minio_path,
                         "chunk_index": point.payload.get("chunk_index", 0),
                         "chunk_size": len(chunk_text) if chunk_text else 0,
+                        "titulo": point.payload.get("titulo"),
+                        "topico": point.payload.get("topico"),
                         "score": point.score,
                         "similarity_percentage": similarity_percentage,
                         "id": point.id
@@ -855,25 +869,31 @@ class QdrantVectorStore:
     def _get_real_document_count(self, collection_name: str) -> Dict[str, int]:
         """Calcula a contagem real de documentos únicos e chunks em uma collection."""
         try:
-            # Usar scroll para pegar todos os pontos com payload
-            scroll_result = self.client.scroll(
-                collection_name=collection_name,
-                limit=10000,  # Limite alto para pegar todos
-                with_payload=True,
-                with_vectors=False
-            )
-            
             unique_documents = set()
             total_chunks = 0
-            
-            for point in scroll_result[0]:  # scroll_result é uma tupla (points, next_page_offset)
-                if point.id != 0:  # Excluir ponto de metadata
-                    total_chunks += 1
-                    
-                    # Identificar documento único por file_name_safe
-                    file_name = point.payload.get("file_name_safe", 
-                                                  point.payload.get("file_name", f"doc_{point.id}"))
-                    unique_documents.add(file_name)
+            offset = None
+
+            # Paginar com scroll trazendo só os nomes de arquivo (o texto dos chunks é grande)
+            while True:
+                points, offset = self.client.scroll(
+                    collection_name=collection_name,
+                    limit=10000,
+                    offset=offset,
+                    with_payload=["file_name_safe", "file_name"],
+                    with_vectors=False
+                )
+
+                for point in points:
+                    if point.id != 0:  # Excluir ponto de metadata
+                        total_chunks += 1
+
+                        # Identificar documento único por file_name_safe
+                        file_name = point.payload.get("file_name_safe",
+                                                      point.payload.get("file_name", f"doc_{point.id}"))
+                        unique_documents.add(file_name)
+
+                if offset is None:
+                    break
             
             unique_count = len(unique_documents)
             

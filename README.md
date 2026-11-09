@@ -2,6 +2,8 @@
 
 Uma aplicação educacional completa desenvolvida para demonstrar o funcionamento integrado de uma arquitetura baseada em **Recuperação Aumentada por Geração (RAG)**, utilizando tecnologias modernas e APIs de LLMs.
 
+> **Sem créditos de API?** Veja [`LOCAL.md`](LOCAL.md): o mesmo app rodando com LLM e embeddings locais (Ollama), ingestão dos 100 PDFs do arXiv, tópicos por conteúdo e visualizações. Os resultados, com imagens, estão em [`visualizacoes/README.md`](visualizacoes/README.md).
+
 ## 🎯 Objetivo
 
 O RAG-Demo é uma plataforma voltada para alunos da disciplina de **Processamento de Linguagem Natural (PLN)**, permitindo experimentação prática com:
